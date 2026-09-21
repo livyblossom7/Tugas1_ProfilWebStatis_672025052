@@ -1,0 +1,354 @@
+/* Untuk mengambil jenis font di luar CSS.*/
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Warna Dasar yang dipakai di wesbite ini */
+:root {
+    --langit: #dceefc;
+    --biru-tua: #4a78b8;
+    --biru-gradasi: #7fb2ec;
+    --putih: #ffffff;
+    --teks: #2b3a55;
+    --teks-muda: #5c76a3;
+
+    --hijau-terang: #ddf5ab;
+    --hijau: #a5d96a;
+    --hijau-tua: #6fa33a;
+    --hijau-garis: #5a8f28;
+}
+
+/* Pengaturan dasar halaman mulai dari font, warna teks, dan foto background. */
+body {
+    margin: 0;
+    padding: 30px 16px;
+    background-image: url("/Images/Window_Background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Trebuchet MS', 'Comic Sans MS', sans-serif;
+    color: var(--teks);
+}
+
+/* Bingkai Windows, background bingkai, dan efek kaca */
+.window-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 560px;
+    margin : 0 auto;
+    border: 2px solid rgba(255,255,255,.6);
+    border-radius: 16px;
+    background: rgba(234, 245, 255, .35);
+    backdrop-filter: blur(14px) saturate(140%);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.8),
+        inset 0 -1px 12px rgba(74,120,184,.15),
+        0 10px 30px rgba(30,60,110,.25);
+}
+
+/* Untuk efek kilau kaca diagonal di seluruh windows yang ditaruh di atas langsung */
+.window-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(255,255,255,.15) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Bagian Title Bar */
+.window-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 14px;
+    background: linear-gradient(180deg, rgba(127,178,236,.75), rgba(74,120,184,.75));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    color: #fff;
+}
+
+/* Teks judul kecil di title bar */
+.window-judul {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    letter-spacing: .5px;
+}
+
+/* Bentuk dasar bulat untuk tombol ✕ dan ► di title bar */
+.icon {
+    position: relative;
+    overflow: hidden;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 11px;
+    flex-shrink: 0;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.9),
+        inset 0 -3px 4px rgba(0,0,0,.25),
+        0 1px 2px rgba(0,0,0,.3);
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+/* Efek kilau kaca di bagian atas tombol */
+.icon::before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    left: 15%;
+    right: 15%;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0));
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+/* Warna khusus tiap tombol: merah untuk close, biru untuk play */
+.icon-close { background: linear-gradient(180deg, #ffb3b3 0%, #ff8b8b 55%, #e05a5a 100%); color: #7a1f1f; }
+.icon-play  { background: linear-gradient(180deg, #d8f1ff 0%, #bfe8ff 55%, #8cc6ea 100%); color: #1f4d7a; }
+
+/* Isi konten dari window */
+.window-body {
+    padding: 24px 20px 10px;
+}
+
+/* Bagian Foto Pas dengan efek glow di sekitarnya*/
+.pas-foto {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin: 0 auto 20px;
+    border: 5px solid #ffffff;
+    border-radius: 18px;
+    animation: glow-foto 2.4s ease-in-out infinite;
+}
+@keyframes glow-foto {
+    0%, 100% {
+        box-shadow:
+            0 0 0 2px var(--biru-gradasi),
+            0 0 12px 3px rgba(255,255,255,.85),
+            0 0 22px 6px rgba(180,220,255,.5);
+    }
+    50% {
+        box-shadow:
+            0 0 0 2px var(--biru-gradasi),
+            0 0 20px 6px rgba(255,255,255,1),
+            0 0 38px 14px rgba(180,220,255,.75);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .pas-foto { animation: none; }
+}
+
+/* Bagian Nama lengkap */
+.nama-lengkap {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 34px;
+    letter-spacing: 1px;
+    color: #2f4d16;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.6);
+    margin: 0 auto 24px;
+    background: linear-gradient(180deg, var(--hijau-terang) 0%, var(--hijau) 55%, var(--hijau-tua) 100%);
+    border: 2px solid var(--hijau-garis);
+    border-radius: 16px;
+    padding: 8px 6px;
+    max-width: 90%;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.9),
+        inset 0 -6px 10px rgba(0,0,0,.12),
+        0 3px 0 rgba(90,143,40,.45);
+}
+
+ /* Efek highlight kaca di bagian atas seperti tombol Start/Remove */
+.nama-lengkap::before,
+.judul-section::before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    left: 6%;
+    right: 6%;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,0));
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+/* Bagian Biodata Diri */
+.biodata-list {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 4px 4px;
+    background: var(--putih);
+    border: 2px solid var(--biru-gradasi);
+    border-radius: 10px;
+    font-size: 13.5px;
+}
+.biodata-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 12px;
+}
+.biodata-list li span:first-child {
+    color: var(--teks-muda);
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.biodata-list li span:last-child {
+    font-weight: 600;
+    text-align: right;
+}
+.biodata-list li + li {
+    border-top: 1px dashed #cfe3f7;
+}
+
+/* Bagian Proyek dengan judul, deskripsi, dan link proyek */
+.proyek-list {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 4px 4px;
+    background: var(--putih);
+    border: 2px solid var(--biru-gradasi);
+    border-radius: 10px;
+    font-size: 14px;
+}
+.proyek-list li {
+    padding: 10px 12px;
+}
+.proyek-list li + li {
+    border-top: 1px dashed #cfe3f7;
+}
+.proyek-judul {
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+    color: var(--biru-tua);
+    margin: 0 0 4px;
+}
+.proyek-deskripsi {
+    margin: 0 0 6px;
+    line-height: 1.5;
+    color: var(--teks);
+}
+.proyek-link {
+    display: inline-block;
+    color: var(--biru-tua);
+    font-weight: bold;
+    text-decoration: none;
+    background: var(--langit);
+    border: 1px solid var(--biru-gradasi);
+    border-radius: 999px;
+    padding: 1px 10px;
+}
+.proyek-link:hover {
+    background: var(--hijau-tua);
+    color: #fff;
+}
+
+/* Bagian judul per bagian */
+.judul-section {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: #2f4d16;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.6);
+    background: linear-gradient(180deg, var(--hijau-terang) 0%, var(--hijau) 55%, var(--hijau-tua) 100%);
+    border: 2px solid var(--hijau-garis);
+    border-radius: 999px;
+    padding: 3px 18px;
+    margin: 22px auto 10px;
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.9),
+        inset 0 -4px 8px rgba(0,0,0,.12),
+        0 2px 0 rgba(90,143,40,.45);
+}
+
+/* Kotak untuk isi bagian paragraf & kontak */
+.tentang-saya,
+.kontak-info {
+    background: var(--putih);
+    border: 2px solid var(--biru-gradasi);
+    border-radius: 10px;
+    padding: 10px 14px;
+    line-height: 1.6;
+    font-size: 14.5px;
+    margin: 0 0 8px;
+}
+
+/* Bagian untuk list pendidikan, keahlian, dan hobi */
+.pendidikan-list,
+.keahlian-list,
+.hobi-list {
+    margin: 0 0 8px;
+    padding: 6px 4px 6px 30px;
+    background: var(--putih);
+    border: 2px solid var(--biru-gradasi);
+    border-radius: 10px;
+    font-size: 14.5px;
+}
+.pendidikan-list li,
+.keahlian-list li,
+.hobi-list li {
+    padding: 6px 10px;
+}
+.pendidikan-list li::marker,
+.keahlian-list li::marker,
+.hobi-list li::marker {
+    color: var(--hijau-tua);
+}
+.pendidikan-list li + li,
+.keahlian-list li + li,
+.hobi-list li + li {
+    border-top: 1px dashed #cfe3f7;
+}
+
+/* Bagian Link Kontak beserta hovernya kalau kursor di atas  ====== */
+.kontak-link {
+    display: inline-block;
+    margin-top: 2px;
+    color: var(--biru-tua);
+    font-weight: bold;
+    text-decoration: none;
+    background: var(--langit);
+    border: 1px solid var(--biru-gradasi);
+    border-radius: 999px;
+    padding: 1px 10px;
+}
+.kontak-link:hover {
+    background: var(--hijau-tua);
+    color: #fff;
+}
+
+/* Bagian Footer Windows */
+.window-footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    color: var(--teks-muda);
+    background: rgba(220, 238, 252, .5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255,255,255,.5);
+    padding: 8px;
+}
+
+/* Perkecil ukuran nama di layar HP supaya tidak meluber */
+@media (max-width: 420px) {
+    .nama-lengkap { font-size: 26px; }
+}
+
+
