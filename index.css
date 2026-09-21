@@ -20,7 +20,7 @@
 body {
     margin: 0;
     padding: 30px 16px;
-    background-image: url("/Images/Window_Background.png");
+    background-image: url("https://raw.githubusercontent.com/livyblossom7/Tugas1_ProfilWebStatis_672025052/refs/heads/main/Images/Window_Background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
